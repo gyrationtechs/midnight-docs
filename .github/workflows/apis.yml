@@ -169,7 +169,7 @@ jobs:
       - name: Inject H1 header into midnight-js packages
         if: ${{ github.event.inputs.component == 'midnight-js' }}
         run: |
-          DEST_DIR=docs/develop/reference/midnight-api/midnight-js/@midnight-ntwrk
+          DEST_DIR=api-reference/midnight-js/@midnight-ntwrk
           for d in ${DEST_DIR}/*/; do echo -e "# $(basename $d)\n\n$(cat $d/README.md)" > $d/README.md; done
 
       - name: Update zswap
