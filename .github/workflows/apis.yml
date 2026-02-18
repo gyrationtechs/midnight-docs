@@ -212,7 +212,7 @@ jobs:
 
       - name: Strip github references - just in case...
         run: |
-          find docs/develop/reference -type f -name '*.md' -exec sed -i'' -e 's/github.com\/midnightntwrk/FIXME/g' {} \;
+          find api-reference -type f -name '*.md' -exec sed -i'' -e 's/github.com\/midnightntwrk/FIXME/g' {} \;
 
       - name: Add changes
         id: prep
