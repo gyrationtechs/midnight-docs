@@ -240,7 +240,7 @@ jobs:
         if: ${{ steps.prep.outputs.UPDATE == 'true' }}
         with:
           commit_message: "Copy API docs from other repositories"
-          repo: gyrationtechs/midnight-docs
+          repo: ${{github.repository}}
           branch: ${{ steps.prep.outputs.NEW_BRANCH }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
