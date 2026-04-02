@@ -174,10 +174,10 @@ jobs:
                 RAW_URL="$SRC_URL"
                 ;;
               https://github.com/*/releases/tag/*)
-                # Release notes body on GitHub release pages is rendered HTML; use clone path for these.
-                echo "Release tag URL provided: $SRC_URL"
-                echo "Please provide source_path for release-tag pages (or a raw URL) and re-run."
-                exit 1
+                # Fetch release notes body from GitHub Releases API.
+                OWNER_REPO=$(echo "$SRC_URL" | sed -E 's|^https://github.com/([^/]+/[^/]+)/releases/tag/.*$|\1|')
+                TAG=$(echo "$SRC_URL" | sed -E 's|^https://github.com/[^/]+/[^/]+/releases/tag/(.*)$|\1|')
+                gh api "repos/${OWNER_REPO}/releases/tags/${TAG}" --jq '.body' > "$TMP_SOURCE"
                 ;;
               https://github.com/*/blob/*)
                 RAW_URL=$(echo "$SRC_URL" | sed -E 's|^https://github.com/([^/]+/[^/]+)/blob/([^/]+)/(.*)$|https://raw.githubusercontent.com/\1/\2/\3|')
