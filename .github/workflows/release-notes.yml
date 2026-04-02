@@ -322,7 +322,7 @@ jobs:
           git add -A
           git push -u origin "$BRANCH"
         env:
-          GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: planetscale/ghcommit-action@25309d8005ac7c3bcd61d3fe19b69e0fe47dbdde # v0.2.20
         if: ${{ steps.prep.outputs.UPDATE == 'true' }}
@@ -331,7 +331,7 @@ jobs:
           repo: ${{ github.repository }}
           branch: ${{ steps.prep.outputs.NEW_BRANCH }}
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create PR
         if: ${{ steps.prep.outputs.UPDATE == 'true' }}
@@ -342,5 +342,5 @@ jobs:
             --title "$PR_TITLE" \
             --body "Automated release notes copy — component: \`${{ github.event.inputs.component }}\`, source_url: \`${{ github.event.inputs.source_url }}\`, source_path: \`${{ github.event.inputs.source_path }}\`, version: \`${{ github.event.inputs.version }}\`."
         env:
-          GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_TITLE: ${{ github.event.inputs.pr_title }}
