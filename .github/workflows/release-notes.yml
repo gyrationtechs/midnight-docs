@@ -343,6 +343,8 @@ jobs:
             --head "${{ steps.prep.outputs.NEW_BRANCH }}" \
             --title "$PR_TITLE" \
             --body "Automated release notes copy — component: \`${{ github.event.inputs.component }}\`, source_url: \`${{ github.event.inputs.source_url }}\`, source_path: \`${{ github.event.inputs.source_path }}\`, version: \`${{ github.event.inputs.version }}\`."
+          PR_URL=$(gh pr view --json url -q .url)
+          gh pr comment "$PR_URL" --body "@claude Rewrite docs/relnotes/${SUBDIR}/${SLUG}.mdx to match Midnight release-note style. Preserve all technical facts, versions, links, and chronology. Use docs/relnotes/midnight-js/midnight-js-4-0-2.mdx as style reference. Keep valid MDX."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_TITLE: ${{ github.event.inputs.pr_title }}
