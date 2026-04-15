@@ -17,9 +17,18 @@ import { useLocation } from '@docusaurus/router';
 
 const releases = [
   {
+  version: '4.0.1',
+  status: 'LATEST',
+  date: '15 April 2026',
+  summary: 'Summary of Release 4.0.1',
+  details: [],
+  artifacts: [],
+  link: '/relnotes/midnight-js/midnight-js-v4-0-1',
+},
+  {
     id: 1,
     version: '3.0.0',
-    status: 'LATEST',
+    status: 'UNSUPPORTED',
     date: '17 December 2025',
     summary: 'Summary of Release 3.0.0',
     details: [
